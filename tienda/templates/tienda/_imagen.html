@@ -1,0 +1,7 @@
+{% load tienda_extras %}<div class="foto tono-{{ producto.id|tono }}">
+  {% if producto.imagen %}
+    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" loading="lazy">
+  {% else %}
+    <span class="foto-inicial" aria-hidden="true">{{ producto.nombre|inicial }}</span>
+  {% endif %}
+</div>

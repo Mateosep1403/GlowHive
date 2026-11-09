@@ -1,0 +1,94 @@
+{% extends "tienda/base.html" %}
+{% load static tienda_extras %}
+{% block titulo %}GlowHive — belleza probada por otras{% endblock %}
+
+{% block content %}
+
+<section class="portada">
+  <div class="portada-in">
+    <div>
+      <h1>Belleza probada por otras.</h1>
+      <p class="portada-texto">Calificaciones, reseñas de creadoras y los videos de TikTok donde las usan, juntos en cada producto.</p>
+      <a class="btn btn-primario" href="#catalogo">Ver el catálogo</a>
+    </div>
+
+    {% with destacado=top_productos.0 %}
+    {% if destacado %}
+    <aside class="destacado" aria-label="Producto más recomendado">
+      <a href="{% url 'producto_detalle' destacado.id %}" tabindex="-1" aria-hidden="true">
+        {% include "tienda/_imagen.html" with producto=destacado %}
+      </a>
+      <div>
+        <p class="destacado-nota">Lo más recomendado por creadoras</p>
+        <h2><a href="{% url 'producto_detalle' destacado.id %}">{{ destacado.nombre }}</a></h2>
+        {% if destacado.rating_promedio %}
+          <div class="calificacion">
+            {% include "tienda/_estrellas.html" with valor=destacado.rating_promedio %}
+            <span><strong>{{ destacado.rating_promedio|floatformat:1 }}</strong> ({{ destacado.total_resenas }})</span>
+          </div>
+        {% endif %}
+        {% if destacado.mejor_resena %}
+          <p class="cita">“{{ destacado.mejor_resena.comentario }}”</p>
+        {% endif %}
+        <a class="enlace" href="{% url 'producto_detalle' destacado.id %}">Ver producto</a>
+      </div>
+    </aside>
+    {% endif %}
+    {% endwith %}
+  </div>
+</section>
+
+<section class="top" aria-labelledby="titulo-top">
+  <div class="seccion">
+    <div class="seccion-cabecera">
+      <div>
+        <h2 id="titulo-top">Top 10</h2>
+        <p class="subtitulo">Ordenados primero por reseñas de creadoras y luego por calificación.</p>
+      </div>
+    </div>
+    {% if top_productos %}
+    <ol class="top-lista" tabindex="0" aria-label="Los 10 productos mejor valorados">
+      {% for producto in top_productos %}
+      <li class="top-item">
+        <span class="top-num" aria-hidden="true">{{ forloop.counter }}</span>
+        {% include "tienda/_tarjeta.html" %}
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="vacio">Todavía no hay productos para armar el ranking.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="seccion" id="catalogo" aria-labelledby="titulo-catalogo">
+  <div class="seccion-cabecera">
+    <div>
+      <h2 id="titulo-catalogo">Todo el catálogo</h2>
+      <p class="subtitulo"><span id="conteo" aria-live="polite">{{ productos|length }} productos</span></p>
+    </div>
+    <div class="filtros" role="group" aria-label="Filtrar por categoría">
+      <button type="button" class="chip" data-filtro="" aria-pressed="true">Todo</button>
+      {% for categoria in categorias %}
+      <button type="button" class="chip" data-filtro="{{ categoria.id }}" aria-pressed="false">{{ categoria.nombre }}</button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="rejilla" data-rejilla>
+    {% for producto in productos %}
+      {% include "tienda/_tarjeta.html" %}
+    {% empty %}
+      <p class="vacio">Todavía no hay productos en el catálogo.</p>
+    {% endfor %}
+  </div>
+  <p class="vacio" id="sin-resultados" hidden>No hay productos en esta categoría todavía. Prueba con otra.</p>
+</section>
+
+<section class="frase" aria-label="Lema">
+  <p>Tu piel, tu historia, tu brillo.</p>
+</section>
+
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'tienda/catalogo.js' %}"></script>{% endblock %}

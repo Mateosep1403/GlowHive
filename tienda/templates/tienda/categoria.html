@@ -1,0 +1,43 @@
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block titulo %}{{ categoria.nombre }} — GlowHive{% endblock %}
+
+{% block content %}
+
+<header class="encabezado">
+  <nav class="migas" aria-label="Ruta">
+    <ol>
+      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li aria-current="page">{{ categoria.nombre }}</li>
+    </ol>
+  </nav>
+  <h1>{{ categoria.nombre }}</h1>
+  {% if categoria.descripcion %}<p class="subtitulo">{{ categoria.descripcion }}</p>{% endif %}
+
+  <div class="encabezado-pie">
+    <p><span id="conteo" aria-live="polite">{{ productos|length }} productos</span></p>
+    <div class="orden">
+      <label for="orden">Ordenar por</label>
+      <select id="orden">
+        <option value="ranking">Más recomendados</option>
+        <option value="calificacion">Mejor calificados</option>
+        <option value="precio-asc">Precio: de menor a mayor</option>
+        <option value="precio-desc">Precio: de mayor a menor</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<section class="seccion" aria-label="Productos de {{ categoria.nombre }}">
+  <div class="rejilla" data-rejilla>
+    {% for producto in productos %}
+      {% include "tienda/_tarjeta.html" %}
+    {% empty %}
+      <p class="vacio">Todavía no hay productos en esta categoría. <a class="enlace" href="{% url 'inicio' %}">Ver todo el catálogo</a></p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'tienda/catalogo.js' %}"></script>{% endblock %}

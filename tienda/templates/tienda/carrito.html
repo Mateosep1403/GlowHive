@@ -1,0 +1,58 @@
+{% extends "tienda/base.html" %}
+{% block titulo %}Carrito — GlowHive{% endblock %}
+
+{% block content %}
+
+<header class="encabezado">
+  <nav class="migas" aria-label="Ruta">
+    <ol>
+      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li aria-current="page">Carrito</li>
+    </ol>
+  </nav>
+  <h1>Tu carrito</h1>
+</header>
+
+<div id="carrito-app">
+
+  <div id="carrito-contenido" class="carrito" hidden>
+    <div>
+      <ul id="carrito-lista"></ul>
+    </div>
+
+    <aside class="resumen" aria-labelledby="titulo-resumen">
+      <h2 id="titulo-resumen">Resumen</h2>
+      <p id="carrito-cantidad"></p>
+      <p class="resumen-total"><span>Total</span> <span id="carrito-total">$0</span></p>
+
+      <form id="form-compra" novalidate>
+        <div class="campo">
+          <label for="usuario">¿Quién hace la compra?</label>
+          <select id="usuario" name="usuario">
+            <option value="">Elige un perfil</option>
+            {% for usuario in usuarios %}
+            <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" id="btn-confirmar" class="btn btn-primario">Confirmar compra</button>
+        <div id="carrito-mensaje" class="mensaje" role="alert" hidden></div>
+        <p class="nota">Todavía no hay cuentas de usuario, por eso se elige el perfil. El pago se registra como aprobado de forma simulada.</p>
+      </form>
+    </aside>
+  </div>
+
+  <div id="carrito-vacio" class="seccion" hidden>
+    <p class="vacio">Tu carrito está vacío. Agrega productos desde el <a class="enlace" href="{% url 'inicio' %}#catalogo">catálogo</a> o mira el <a class="enlace" href="{% url 'inicio' %}">Top 10</a>.</p>
+  </div>
+
+  <div id="carrito-confirmacion" class="seccion confirmacion" hidden>
+    <h2 id="confirmacion-titulo" tabindex="-1">Tu orden está confirmada.</h2>
+    <p>Número de orden: <strong id="confirmacion-numero"></strong></p>
+    <p>Total: <strong id="confirmacion-total"></strong></p>
+    <a class="btn btn-primario" href="{% url 'inicio' %}">Seguir mirando</a>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block titulo %}{% if q %}{{ q }} — Búsqueda — {% endif %}GlowHive{% endblock %}
+
+{% block content %}
+
+<header class="encabezado">
+  <nav class="migas" aria-label="Ruta">
+    <ol>
+      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li aria-current="page">Búsqueda</li>
+    </ol>
+  </nav>
+  <h1>{% if q %}“{{ q }}”{% else %}Buscar{% endif %}</h1>
+
+  {% if q %}
+  <div class="encabezado-pie">
+    <p><span id="conteo" aria-live="polite">{{ productos|length }} resultado{{ productos|length|pluralize }}</span></p>
+    {% if productos %}
+    <div class="orden">
+      <label for="orden">Ordenar por</label>
+      <select id="orden">
+        <option value="ranking">Más recomendados</option>
+        <option value="calificacion">Mejor calificados</option>
+        <option value="precio-asc">Precio: de menor a mayor</option>
+        <option value="precio-desc">Precio: de mayor a menor</option>
+      </select>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</header>
+
+<section class="seccion" aria-label="Resultados de la búsqueda">
+  {% if not q %}
+    <p class="vacio">Escribe el nombre de un producto, una marca o una categoría en el buscador de arriba.</p>
+  {% elif productos %}
+    <div class="rejilla" data-rejilla>
+      {% for producto in productos %}
+        {% include "tienda/_tarjeta.html" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="vacio">No encontramos productos para “{{ q }}”. Revisa la ortografía o prueba con una palabra más corta, o mira el <a class="enlace" href="{% url 'inicio' %}#catalogo">catálogo completo</a>.</p>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'tienda/catalogo.js' %}"></script>{% endblock %}

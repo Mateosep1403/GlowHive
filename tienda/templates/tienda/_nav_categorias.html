@@ -1,0 +1,6 @@
+<nav class="nav-cat" aria-label="Categorías">
+  {% for categoria in categorias %}
+    {% url 'categoria_detalle' categoria.id as destino %}
+    <a href="{{ destino }}"{% if ruta == destino %} aria-current="page"{% endif %}>{{ categoria.nombre }}</a>
+  {% endfor %}
+</nav>

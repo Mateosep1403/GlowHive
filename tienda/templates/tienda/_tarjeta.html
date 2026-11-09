@@ -1,0 +1,37 @@
+{% load tienda_extras %}
+<article class="tarjeta"
+         data-categoria="{{ producto.categoria_id|default_if_none:'' }}"
+         data-precio="{{ producto.precio|floatformat:'0u' }}"
+         data-calificacion="{{ producto.rating_promedio|default_if_none:0|floatformat:'2u' }}">
+  <a class="tarjeta-enlace" href="{% url 'producto_detalle' producto.id %}">
+    {% include "tienda/_imagen.html" %}
+    {% if producto.video_url %}<span class="chip-video">Video de TikTok</span>{% endif %}
+    <h3 class="tarjeta-nombre">{{ producto.nombre }}</h3>
+  </a>
+
+  <p class="tarjeta-precio">{{ producto.precio|cop }}</p>
+
+  {% if producto.rating_promedio %}
+    <div class="calificacion">
+      {% include "tienda/_estrellas.html" with valor=producto.rating_promedio %}
+      <span><strong>{{ producto.rating_promedio|floatformat:1 }}</strong> ({{ producto.total_resenas }})</span>
+    </div>
+  {% else %}
+    <p class="calificacion">Sin reseñas todavía</p>
+  {% endif %}
+
+  {% if producto.mejor_resena %}
+    <p class="cita">
+      {% if producto.mejor_resena.es_creadora %}<span class="sello">Creadora</span>{% endif %}“{{ producto.mejor_resena.comentario }}”
+    </p>
+  {% endif %}
+
+  <button type="button" class="btn btn-agregar"
+          data-id="{{ producto.id }}"
+          data-nombre="{{ producto.nombre }}"
+          data-precio="{{ producto.precio|floatformat:'0u' }}"
+          data-imagen="{% if producto.imagen %}{{ producto.imagen.url }}{% endif %}"
+          data-url="{% url 'producto_detalle' producto.id %}"
+          aria-pressed="false"
+          {% if producto.stock <= 0 %}disabled{% endif %}>{% if producto.stock <= 0 %}Agotado{% else %}Agregar{% endif %}</button>
+</article>
