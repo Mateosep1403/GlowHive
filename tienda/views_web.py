@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.db.models import Avg, Count, Case, When, IntegerField
+from django.shortcuts import render, get_object_or_404
 
 from tienda.models import Categoria, Producto
-
-
+from core.ranking import (
+    productos_con_ranking as _productos_con_ranking,
+    mejor_resena as _mejor_resena,
+)
 def home(request):
     categorias = Categoria.objects.all()
     panels = []

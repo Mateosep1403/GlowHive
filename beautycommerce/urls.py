@@ -13,7 +13,7 @@ from tienda.views import (
     ResenaListCreateView,
     DireccionEnvioListCreateView,
 )
-from tienda.views_web import home
+from core.api_v1 import TopSemanaView, salud
 
 
 def status(request):
@@ -45,6 +45,8 @@ urlpatterns = [
     path("producto/<int:producto_id>/", producto_detalle, name="producto_detalle"),
     path("buscar/", buscar, name="buscar"),
     path("carrito/", carrito, name="carrito"),
+    path("api/v1/top-semana/", TopSemanaView.as_view(), name="api_top_semana"),
+    path("api/v1/salud/", salud, name="api_salud"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
