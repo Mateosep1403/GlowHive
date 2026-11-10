@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
+from core.infra.servicio_aliado import ServicioAliadoClient
 from core.infra.tasa_cambio import crear_conversor
 from tienda.models import Categoria, Producto
 from core.ranking import (
@@ -66,6 +67,7 @@ def home(request):
         "categorias": categorias,
         "top_productos": top_productos,
         "productos": productos,
+        "aliados": ServicioAliadoClient().listar(),
     })
 
 

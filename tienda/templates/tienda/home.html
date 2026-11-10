@@ -85,6 +85,27 @@
   <p class="vacio" id="sin-resultados" hidden>No hay productos en esta categoría todavía. Prueba con otra.</p>
 </section>
 
+{% if aliados %}
+<section class="seccion" aria-labelledby="titulo-aliados">
+  <div class="seccion-cabecera">
+    <div>
+      <h2 id="titulo-aliados">Descubre también</h2>
+      <p class="subtitulo">Recomendaciones de nuestro equipo aliado.</p>
+    </div>
+  </div>
+  <ul class="rejilla">
+    {% for item in aliados %}
+    <li class="tarjeta">
+      {% if item.imagen %}<img src="{{ item.imagen }}" alt="{{ item.nombre }}" loading="lazy" style="width:100%;aspect-ratio:1;object-fit:cover">{% endif %}
+      <h3 class="tarjeta-nombre">{% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.nombre }}</a>{% else %}{{ item.nombre }}{% endif %}</h3>
+      {% if item.descripcion %}<p class="cita">{{ item.descripcion|truncatechars:90 }}</p>{% endif %}
+      {% if item.precio %}<p class="tarjeta-precio">{{ item.precio }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 <section class="frase" aria-label="Lema">
   <p>Tu piel, tu historia, tu brillo.</p>
 </section>
