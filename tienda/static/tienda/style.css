@@ -814,3 +814,47 @@ ul, ol { list-style: none; }
 /* ---------- Precio en USD (API de terceros) ---------- */
 
 .precio-usd { font-size: .55em; font-weight: 500; opacity: .75; white-space: nowrap; }
+
+/* ---------- Panel de arquitectura ---------- */
+.servicios { display: grid; gap: 0.6rem; }
+.servicio {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  background: var(--blush);
+  border-left: 4px solid var(--linea);
+}
+.servicio-ok { border-left-color: #2f7d4f; }
+.servicio-caido { border-left-color: var(--labial); }
+.servicio-no_configurado { border-left-color: var(--rosa); }
+.servicio-punto { width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--apagado); }
+.servicio-ok .servicio-punto { background: #2f7d4f; }
+.servicio-caido .servicio-punto { background: var(--labial); }
+.servicio-cuerpo { display: grid; }
+.servicio-detalle, .servicio-meta { font-size: 0.88rem; color: var(--apagado); }
+.servicio-meta { display: grid; justify-items: end; }
+.servicio-tipo { font-weight: 700; color: var(--vino); }
+@media (max-width: 560px) {
+  .servicio { grid-template-columns: auto minmax(0, 1fr); }
+  .servicio-meta { grid-column: 2; justify-items: start; }
+}
+
+.acciones-panel { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.registro-titulo { margin: 2rem 0 0.75rem; font-family: var(--serif); font-size: 1.6rem; color: var(--vino); }
+.registro { display: grid; gap: 0.5rem; }
+.registro-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  align-items: baseline;
+  padding: 0.7rem 1rem;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-left: 4px solid #2f7d4f;
+  font-size: 0.92rem;
+}
+.registro-error { border-left-color: var(--labial); }
+.registro-servicio { color: var(--vino); }
+.registro-extra { color: var(--apagado); overflow-wrap: anywhere; }

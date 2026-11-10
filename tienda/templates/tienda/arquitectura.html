@@ -1,0 +1,52 @@
+{% extends "tienda/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block titulo %}{% trans "Arquitectura" %} — GlowHive{% endblock %}
+
+{% block content %}
+<header class="encabezado">
+  <nav class="migas" aria-label="{% trans 'Ruta' %}">
+    <ol>
+      <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
+      <li aria-current="page">{% trans "Arquitectura" %}</li>
+    </ol>
+  </nav>
+  <h1>{% trans "Sistema distribuido" %}</h1>
+  <p class="subtitulo">{% trans "Cada petición pasa por Nginx, que decide si la atiende el monolito Django o un microservicio ya migrado (Strangler Pattern)." %}</p>
+</header>
+
+<section class="seccion" aria-labelledby="titulo-servicios">
+  <div class="seccion-cabecera">
+    <h2 id="titulo-servicios">{% trans "Servicios" %}</h2>
+    <button type="button" class="btn" id="btn-estado">{% trans "Actualizar estado" %}</button>
+  </div>
+  <ul class="servicios" id="lista-servicios" aria-live="polite">
+    <li class="vacio">{% trans "Consultando servicios…" %}</li>
+  </ul>
+</section>
+
+<section class="seccion" aria-labelledby="titulo-acciones">
+  <div class="seccion-cabecera">
+    <div>
+      <h2 id="titulo-acciones">{% trans "Probar desde el navegador" %}</h2>
+      <p class="subtitulo">{% trans "Cada botón hace una petición real. El registro muestra qué servicio respondió." %}</p>
+    </div>
+  </div>
+
+  <div class="acciones-panel">
+    <button type="button" class="btn btn-primario" data-accion="top">{% trans "Pedir Top semanal (Django)" %}</button>
+    <button type="button" class="btn btn-primario" data-accion="notificar">{% trans "Enviar notificación (microservicio Flask)" %}</button>
+    <button type="button" class="btn btn-primario" data-accion="reporte">{% trans "Generar reporte de ventas (Celery)" %}</button>
+    <a class="btn" href="{% url 'carrito' %}">{% trans "Hacer una compra (dispara Celery y Flask)" %}</a>
+  </div>
+
+  <p id="reporte-enlace" class="nota" hidden></p>
+
+  <h3 class="registro-titulo">{% trans "Registro de peticiones" %}</h3>
+  <ol class="registro" id="registro" aria-live="polite">
+    <li class="vacio">{% trans "Aún no hay peticiones. Pulsa un botón." %}</li>
+  </ol>
+</section>
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'tienda/arquitectura.js' %}"></script>{% endblock %}

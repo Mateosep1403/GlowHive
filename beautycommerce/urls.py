@@ -4,6 +4,8 @@ from django.urls import path
 from tienda.views_web import home, categoria_detalle, producto_detalle, buscar, carrito
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from core.api_estado import EstadoSistemaView, ReporteView, ReporteEstadoView
 
 
 from core.views import CrearOrdenView
@@ -45,9 +47,13 @@ urlpatterns = [
     path("producto/<int:producto_id>/", producto_detalle, name="producto_detalle"),
     path("buscar/", buscar, name="buscar"),
     path("carrito/", carrito, name="carrito"),
-    path("api/v1/top-semana/", TopSemanaView.as_view(), name="api_top_semana"),
+    path("api/v1/top-semana/", TopSemanaView.as_view(), name="api_top_semana"),s
     path("api/v1/salud/", salud, name="api_salud"),
     path("api/v1/tasa-cambio/", TasaCambioView.as_view(), name="api_tasa_cambio"),
+    path("api/v1/estado/", EstadoSistemaView.as_view(), name="api_estado"),
+    path("api/v1/reportes/", ReporteView.as_view(), name="api_reportes"),
+    path("api/v1/reportes/<str:task_id>/", ReporteEstadoView.as_view(), name="api_reporte_estado"),
+    path("arquitectura/", TemplateView.as_view(template_name="tienda/arquitectura.html"), name="arquitectura"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
