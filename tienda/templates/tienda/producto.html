@@ -34,7 +34,7 @@
       <p class="calificacion">Sin reseñas todavía</p>
     {% endif %}
 
-    <p class="detalle-precio">{{ producto.precio|cop }}</p>
+    <p class="detalle-precio">{{ producto.precio|cop }}{% if precio_usd %} <small class="precio-usd">≈ US$ {{ precio_usd }}</small>{% endif %}</p>
     <p class="detalle-stock">
       {% if producto.stock <= 0 %}Agotado por ahora.
       {% elif producto.stock <= 10 %}Quedan {{ producto.stock }} unidades.

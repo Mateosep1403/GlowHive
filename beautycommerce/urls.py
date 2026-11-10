@@ -13,7 +13,7 @@ from tienda.views import (
     ResenaListCreateView,
     DireccionEnvioListCreateView,
 )
-from core.api_v1 import TopSemanaView, salud
+from core.api_v1 import TasaCambioView, TopSemanaView, salud
 
 
 def status(request):
@@ -47,6 +47,7 @@ urlpatterns = [
     path("carrito/", carrito, name="carrito"),
     path("api/v1/top-semana/", TopSemanaView.as_view(), name="api_top_semana"),
     path("api/v1/salud/", salud, name="api_salud"),
+    path("api/v1/tasa-cambio/", TasaCambioView.as_view(), name="api_tasa_cambio"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

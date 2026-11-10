@@ -810,3 +810,7 @@ ul, ol { list-style: none; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* ---------- Precio en USD (API de terceros) ---------- */
+
+.precio-usd { font-size: .55em; font-weight: 500; opacity: .75; white-space: nowrap; }

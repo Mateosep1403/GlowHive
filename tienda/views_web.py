@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
+from core.infra.tasa_cambio import crear_conversor
 from tienda.models import Categoria, Producto
 from core.ranking import (
     productos_con_ranking as _productos_con_ranking,
@@ -125,6 +126,7 @@ def producto_detalle(request, producto_id):
         "distribucion": distribucion,
         "mejor_resena": mejor_resena,
         "relacionados": relacionados,
+        "precio_usd": crear_conversor().convertir(producto.precio, "COP", "USD"),
     })
 
 

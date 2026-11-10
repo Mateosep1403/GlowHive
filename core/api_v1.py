@@ -2,6 +2,7 @@ from django.db import connection
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from core.infra.tasa_cambio import crear_conversor
 
 from core.ranking import productos_con_ranking, mejor_resena
 from tienda.models import Producto
@@ -39,6 +40,20 @@ class TopSemanaView(APIView):
             })
         return Response({"total": len(items), "items": items})
 
+class TasaCambioView(APIView):
+    """GET /api/v1/tasa-cambio/?monto=45000"""
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request):
+        try:
+            monto = float(request.query_params.get("monto", 1))
+        except ValueError:
+            return Response({"error": "El parámetro monto debe ser numérico."}, status=400)
+        convertido = crear_conversor().convertir(monto, "COP", "USD")
+        if convertido is None:
+            return Response({"error": "Servicio de tasas no disponible."}, status=503)
+        return Response({"monto_cop": monto, "monto_usd": float(convertido)})
 
 def salud(request):
     """Health check para Docker y Nginx."""
