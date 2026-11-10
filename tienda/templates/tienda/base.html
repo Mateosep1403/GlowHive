@@ -1,10 +1,10 @@
-{% load static tienda_extras %}<!DOCTYPE html>
-<html lang="es">
+{% load static i18n tienda_extras %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block titulo %}GlowHive{% endblock %}</title>
-  <meta name="description" content="{% block descripcion %}Belleza con calificaciones, reseñas de creadoras y videos de TikTok en cada producto.{% endblock %}">
+  <meta name="description" content="{% block descripcion %}{% trans "Belleza con calificaciones, reseñas de creadoras y videos de TikTok en cada producto." %}{% endblock %}">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%235D1924'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' text-anchor='middle' fill='%23FFF1F4'%3EG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{% static 'tienda/style.css' %}">
 </head>
 <body>
-  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <a class="saltar" href="#contenido">{% trans "Ir al contenido" %}</a>
 
   <header class="cabecera">
     <div class="cabecera-in">
@@ -22,23 +22,35 @@
 
       <div class="acciones">
         <form class="buscador" action="{% url 'buscar' %}" method="get" role="search">
-          <label class="solo-lectores" for="q-escritorio">Buscar productos</label>
-          <input id="q-escritorio" type="search" name="q" placeholder="Buscar productos" value="{{ q|default:'' }}">
-          <button type="submit" aria-label="Buscar">
+          <label class="solo-lectores" for="q-escritorio">{% trans "Buscar productos" %}</label>
+          <input id="q-escritorio" type="search" name="q" placeholder="{% trans 'Buscar productos' %}" value="{{ q|default:'' }}">
+          <button type="submit" aria-label="{% trans 'Buscar' %}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
           </button>
         </form>
-        <a class="carrito-enlace" href="{% url 'carrito' %}">Carrito <span class="carrito-cuenta" data-carrito-cuenta data-vacio="true">0</span></a>
+        <form class="idioma" action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <label class="solo-lectores" for="idioma">{% trans "Idioma" %}</label>
+          <select id="idioma" name="language" onchange="this.form.submit()">
+            {% get_available_languages as LANGUAGES %}
+            {% for codigo, nombre in LANGUAGES %}
+            <option value="{{ codigo }}"{% if codigo == LANGUAGE_CODE %} selected{% endif %}>{{ codigo|upper }}</option>
+            {% endfor %}
+          </select>
+          <noscript><button type="submit">{% trans "Cambiar" %}</button></noscript>
+        </form>
+        <a class="carrito-enlace" href="{% url 'carrito' %}">{% trans "Carrito" %} <span class="carrito-cuenta" data-carrito-cuenta data-vacio="true">0</span></a>
       </div>
 
       <form class="buscador buscador-movil" action="{% url 'buscar' %}" method="get" role="search">
-        <label class="solo-lectores" for="q-movil">Buscar productos</label>
-        <input id="q-movil" type="search" name="q" placeholder="Buscar productos" value="{{ q|default:'' }}">
-        <button type="submit" aria-label="Buscar">
+        <label class="solo-lectores" for="q-movil">{% trans "Buscar productos" %}</label>
+        <input id="q-movil" type="search" name="q" placeholder="{% trans 'Buscar productos' %}" value="{{ q|default:'' }}">
+        <button type="submit" aria-label="{% trans 'Buscar' %}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         </button>
       </form>
-  </div>
+    </div>
   </header>
 
   <main id="contenido">{% block content %}{% endblock %}</main>
@@ -47,19 +59,21 @@
     <div class="pie-in">
       <div>
         <a href="{% url 'inicio' %}" class="marca">GlowHive</a>
-        <p>Productos de belleza con la calificación de quienes los usan y el video de la creadora que los recomienda.</p>
-        <p>Los videos pertenecen a sus autoras y se muestran desde TikTok.</p>
+        <p>{% trans "Productos de belleza con la calificación de quienes los usan y el video de la creadora que los recomienda." %}</p>
+        <p>{% trans "Los videos pertenecen a sus autoras y se muestran desde TikTok." %}</p>
       </div>
-      <nav aria-label="Pie de página">
+      <nav aria-label="{% trans 'Pie de página' %}">
         <ul>
-          <li><a href="{% url 'inicio' %}">Inicio</a></li>
-          <li><a href="{% url 'buscar' %}">Buscar</a></li>
-          <li><a href="{% url 'carrito' %}">Carrito</a></li>
+          <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
+          <li><a href="{% url 'buscar' %}">{% trans "Buscar" %}</a></li>
+          <li><a href="{% url 'carrito' %}">{% trans "Carrito" %}</a></li>
+          <li><a href="{% url 'arquitectura' %}">{% trans "Arquitectura" %}</a></li>
         </ul>
       </nav>
     </div>
   </footer>
 
+  <script src="{% url 'jsi18n' %}"></script>
   <script src="{% static 'tienda/carrito.js' %}"></script>
   {% block scripts %}{% endblock %}
 </body>

@@ -5,9 +5,9 @@
 {% block content %}
 
 <header class="encabezado">
-  <nav class="migas" aria-label="Ruta">
+  <nav class="migas" aria-label="{% trans 'Ruta' %}">
     <ol>
-      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
       <li aria-current="page">{{ categoria.nombre }}</li>
     </ol>
   </nav>
@@ -15,25 +15,25 @@
   {% if categoria.descripcion %}<p class="subtitulo">{{ categoria.descripcion }}</p>{% endif %}
 
   <div class="encabezado-pie">
-    <p><span id="conteo" aria-live="polite">{{ productos|length }} productos</span></p>
+    <p><span id="conteo" aria-live="polite">{% blocktrans count n=productos|length %}{{ n }} producto{% plural %}{{ n }} productos{% endblocktrans %}</span></p>
     <div class="orden">
-      <label for="orden">Ordenar por</label>
+      <label for="orden">{% trans "Ordenar por" %}</label>
       <select id="orden">
-        <option value="ranking">Más recomendados</option>
-        <option value="calificacion">Mejor calificados</option>
-        <option value="precio-asc">Precio: de menor a mayor</option>
-        <option value="precio-desc">Precio: de mayor a menor</option>
+        <option value="ranking">{% trans "Más recomendados" %}</option>
+        <option value="calificacion">{% trans "Mejor calificados" %}</option>
+        <option value="precio-asc">{% trans "Precio: de menor a mayor" %}</option>
+        <option value="precio-desc">{% trans "Precio: de mayor a menor" %}</option>
       </select>
     </div>
   </div>
 </header>
 
-<section class="seccion" aria-label="Productos de {{ categoria.nombre }}">
+<section class="seccion" aria-label="{% blocktrans with nombre=categoria.nombre %}Productos de {{ nombre }}{% endblocktrans %}">
   <div class="rejilla" data-rejilla>
     {% for producto in productos %}
       {% include "tienda/_tarjeta.html" %}
     {% empty %}
-      <p class="vacio">Todavía no hay productos en esta categoría. <a class="enlace" href="{% url 'inicio' %}">Ver todo el catálogo</a></p>
+      <p class="vacio">{% trans "Todavía no hay productos en esta categoría." %} <a class="enlace" href="{% url 'inicio' %}">{% trans "Ver todo el catálogo" %}</a></p>
     {% endfor %}
   </div>
 </section>

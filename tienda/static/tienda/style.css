@@ -858,3 +858,16 @@ ul, ol { list-style: none; }
 .registro-error { border-left-color: var(--labial); }
 .registro-servicio { color: var(--vino); }
 .registro-extra { color: var(--apagado); overflow-wrap: anywhere; }
+
+/* ---------- Selector de idioma ---------- */
+.idioma { display: flex; align-items: center; }
+.idioma select {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.35rem 0.5rem;
+  border: 1.5px solid var(--vino);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--vino);
+  cursor: pointer;
+}
