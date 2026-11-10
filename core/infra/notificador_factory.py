@@ -38,11 +38,19 @@ class HTTPNotificador(Notificador):
         except requests.RequestException as exc:
             print(f"[MICROSERVICIO] Error al notificar: {exc}")   
 
+class CeleryNotificador(Notificador):
+    """Encola la notificación; el worker la entrega a Flask con reintentos.
+    Crear la orden no se bloquea ni falla si el microservicio está caído."""
+    def enviar_confirmacion(self, orden):
+        from core.tasks import enviar_confirmacion_orden
+        enviar_confirmacion_orden.delay(orden.id)
 
 class NotificadorFactory:
     @staticmethod
     def crear():
         env = os.environ.get("ENV_TYPE", "DEV")
+        if env == "ASYNC":
+            return CeleryNotificador()
         if env == "MICROSERVICIO":
             return HTTPNotificador()
         if env == "REAL":

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -126,3 +126,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# ---------- Celery / Redis ----------
+REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+CELERY_TASK_TIME_LIMIT = 60
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+# Sin REDIS_URL (desarrollo local) las tareas se ejecutan en el momento, sin worker.
+CELERY_TASK_ALWAYS_EAGER = not os.environ.get("REDIS_URL")
