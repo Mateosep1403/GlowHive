@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 23:47-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: tienda/static/tienda/arquitectura.js:6
+msgid "Gateway"
+msgstr "Gateway"
+
+#: tienda/static/tienda/arquitectura.js:6
+msgid "Monolito"
+msgstr "Monolito"
+
+#: tienda/static/tienda/arquitectura.js:6
+msgid "Microservicio"
+msgstr "Microservicio"
+
+#: tienda/static/tienda/arquitectura.js:7
+msgid "Infraestructura"
+msgstr "Infraestructura"
+
+#: tienda/static/tienda/arquitectura.js:7
+msgid "Externo"
+msgstr "Externo"
+
+#: tienda/static/tienda/arquitectura.js:9
+msgid "Activo"
+msgstr "Activo"
+
+#: tienda/static/tienda/arquitectura.js:9
+msgid "Caído"
+msgstr "Caído"
+
+#: tienda/static/tienda/arquitectura.js:9
+msgid "No configurado"
+msgstr "No configurado"
+
+#: tienda/static/tienda/arquitectura.js:46
+msgid "No se pudo consultar el estado de los servicios."
+msgstr "No se pudo consultar el estado de los servicios."
+
+#: tienda/static/tienda/arquitectura.js:60
+msgid "Respondió:"
+msgstr "Respondió:"
+
+#: tienda/static/tienda/arquitectura.js:60
+msgid "(sin gateway)"
+msgstr "(sin gateway)"
+
+#: tienda/static/tienda/arquitectura.js:82
+msgid "No hubo respuesta del servidor."
+msgstr "No hubo respuesta del servidor."
+
+#: tienda/static/tienda/arquitectura.js:96
+msgid "Prueba desde el navegador"
+msgstr "Prueba desde el navegador"
+
+#: tienda/static/tienda/arquitectura.js:108
+msgid "Tarea encolada en Redis:"
+msgstr "Tarea encolada en Redis:"
+
+#: tienda/static/tienda/arquitectura.js:118
+msgid "Estado de la tarea:"
+msgstr "Estado de la tarea:"
+
+#: tienda/static/tienda/arquitectura.js:124
+msgid "Reporte listo:"
+msgstr "Reporte listo:"
+
+#: tienda/static/tienda/carrito.js:77 tienda/static/tienda/carrito.js:113
+msgid "Quitar %(nombre)s del carrito"
+msgstr "Quitar %(nombre)s del carrito"
+
+#: tienda/static/tienda/carrito.js:77
+msgid "Agregar %(nombre)s al carrito"
+msgstr "Agregar %(nombre)s al carrito"
+
+#: tienda/static/tienda/carrito.js:78
+msgid "En el carrito"
+msgstr "En el carrito"
+
+#: tienda/static/tienda/carrito.js:78
+msgid "Agregar"
+msgstr "Agregar"
+
+#: tienda/static/tienda/carrito.js:79
+msgid "Quitar del carrito"
+msgstr "Quitar del carrito"
+
+#: tienda/static/tienda/carrito.js:111
+msgid "Quitar"
+msgstr "Quitar"
+
+#: tienda/static/tienda/carrito.js:153 tienda/static/tienda/carrito.js:160
+msgid "No pudimos crear la orden. Intenta de nuevo en unos minutos."
+msgstr "No pudimos crear la orden. Intenta de nuevo en unos minutos."
+
+#: tienda/static/tienda/carrito.js:170
+msgid "Elige quién hace la compra para continuar."
+msgstr "Elige quién hace la compra para continuar."
+
+#: tienda/static/tienda/carrito.js:178
+msgid "Creando tu orden…"
+msgstr "Creando tu orden…"
+
+#: tienda/static/tienda/carrito.js:208
+msgid ""
+"No pudimos conectar con la tienda. Revisa tu conexión e intenta de nuevo."
+msgstr "No pudimos conectar con la tienda. Revisa tu conexión e intenta de nuevo."
+
+#: tienda/static/tienda/carrito.js:212
+msgid "Confirmar compra"
+msgstr "Confirmar compra"

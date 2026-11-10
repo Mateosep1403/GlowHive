@@ -5,9 +5,9 @@
 {% block content %}
 
 <div class="encabezado">
-  <nav class="migas" aria-label="Ruta">
+  <nav class="migas" aria-label="{% trans 'Ruta' %}">
     <ol>
-      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
       {% if producto.categoria %}
       <li><a href="{% url 'categoria_detalle' producto.categoria.id %}">{{ producto.categoria.nombre }}</a></li>
       {% endif %}
@@ -31,14 +31,14 @@
         <a class="enlace" href="#resenas">{{ producto.rating_promedio|floatformat:1 }} de 5 ({{ producto.total_resenas }} reseña{{ producto.total_resenas|pluralize }})</a>
       </div>
     {% else %}
-      <p class="calificacion">Sin reseñas todavía</p>
+      <p class="calificacion">{% trans "Sin reseñas todavía" %}</p>
     {% endif %}
 
     <p class="detalle-precio">{{ producto.precio|cop }}{% if precio_usd %} <small class="precio-usd">≈ US$ {{ precio_usd }}</small>{% endif %}</p>
     <p class="detalle-stock">
-      {% if producto.stock <= 0 %}Agotado por ahora.
-      {% elif producto.stock <= 10 %}Quedan {{ producto.stock }} unidades.
-      {% else %}Disponible.{% endif %}
+      {% if producto.stock <= 0 %}{% trans "Agotado por ahora." %}
+      {% elif producto.stock <= 10 %}{% blocktrans with n=producto.stock %}Quedan {{ n }} unidades.{% endblocktrans %}
+      {% else %}{% trans "Disponible." %}{% endif %}
     </p>
 
     <div class="detalle-acciones">
@@ -48,7 +48,7 @@
               data-precio="{{ producto.precio|floatformat:'0u' }}"
               data-imagen="{% if producto.imagen %}{{ producto.imagen.url }}{% endif %}"
               data-url="{% url 'producto_detalle' producto.id %}"
-              data-texto="Agregar al carrito"
+              data-texto="{% trans 'Agregar al carrito' %}"
               aria-pressed="false"
               {% if producto.stock <= 0 %}disabled{% endif %}>{% if producto.stock <= 0 %}Agotado{% else %}Agregar al carrito{% endif %}</button>
       <a class="btn" href="{% url 'carrito' %}">Ver carrito</a>

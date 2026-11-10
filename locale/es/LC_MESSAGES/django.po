@@ -1,0 +1,525 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 23:47-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: core/api_v1.py:22
+msgid "El parámetro limit debe ser un número entero."
+msgstr "El parámetro limit debe ser un número entero."
+
+#: core/api_v1.py:53
+msgid "El parámetro monto debe ser numérico."
+msgstr "El parámetro monto debe ser numérico."
+
+#: core/api_v1.py:56
+msgid "Servicio de tasas no disponible."
+msgstr "Servicio de tasas no disponible."
+
+#: core/domain/orden_builder.py:26
+msgid "La orden requiere un usuario."
+msgstr "La orden requiere un usuario."
+
+#: core/domain/orden_builder.py:28
+msgid "La orden requiere al menos un producto."
+msgstr "La orden requiere al menos un producto."
+
+#: core/domain/orden_builder.py:32
+#, python-format
+msgid "Sin stock suficiente para '%(nombre)s'."
+msgstr "Sin stock suficiente para '%(nombre)s'."
+
+#: core/services.py:52
+#, python-format
+msgid "Usuario %(id)s no existe."
+msgstr "Usuario %(id)s no existe."
+
+#: core/services.py:59
+#, python-format
+msgid "Productos no encontrados: %(ids)s"
+msgstr "Productos no encontrados: %(ids)s"
+
+#: tienda/templates/tienda/_nav_categorias.html:1
+msgid "Categorías"
+msgstr "Categorías"
+
+#: tienda/templates/tienda/_tarjeta.html:8
+msgid "Video de TikTok"
+msgstr "Video de TikTok"
+
+#: tienda/templates/tienda/_tarjeta.html:20
+#: tienda/templates/tienda/producto.html:35
+msgid "Sin reseñas todavía"
+msgstr "Sin reseñas todavía"
+
+#: tienda/templates/tienda/_tarjeta.html:25
+#: tienda/templates/tienda/producto.html:117
+msgid "Creadora"
+msgstr "Creadora"
+
+#: tienda/templates/tienda/_tarjeta.html:36
+#: tienda/templates/tienda/producto.html:54
+msgid "Agotado"
+msgstr "Agotado"
+
+#: tienda/templates/tienda/_tarjeta.html:36
+msgid "Agregar"
+msgstr "Agregar"
+
+#: tienda/templates/tienda/arquitectura.html:4
+#: tienda/templates/tienda/arquitectura.html:11
+#: tienda/templates/tienda/base.html:70
+msgid "Arquitectura"
+msgstr "Arquitectura"
+
+#: tienda/templates/tienda/arquitectura.html:8
+#: tienda/templates/tienda/buscar.html:9 tienda/templates/tienda/carrito.html:8
+#: tienda/templates/tienda/categoria.html:9
+#: tienda/templates/tienda/producto.html:9
+msgid "Ruta"
+msgstr "Ruta"
+
+#: tienda/templates/tienda/arquitectura.html:10
+#: tienda/templates/tienda/base.html:67 tienda/templates/tienda/buscar.html:11
+#: tienda/templates/tienda/carrito.html:10
+#: tienda/templates/tienda/categoria.html:11
+#: tienda/templates/tienda/producto.html:11
+msgid "Inicio"
+msgstr "Inicio"
+
+#: tienda/templates/tienda/arquitectura.html:14
+msgid "Sistema distribuido"
+msgstr "Sistema distribuido"
+
+#: tienda/templates/tienda/arquitectura.html:15
+msgid ""
+"Cada petición pasa por Nginx, que decide si la atiende el monolito Django o "
+"un microservicio ya migrado (Strangler Pattern)."
+msgstr "Cada petición pasa por Nginx, que decide si la atiende el monolito Django o un microservicio ya migrado (Strangler Pattern)."
+
+#: tienda/templates/tienda/arquitectura.html:20
+msgid "Servicios"
+msgstr "Servicios"
+
+#: tienda/templates/tienda/arquitectura.html:21
+msgid "Actualizar estado"
+msgstr "Actualizar estado"
+
+#: tienda/templates/tienda/arquitectura.html:24
+msgid "Consultando servicios…"
+msgstr "Consultando servicios…"
+
+#: tienda/templates/tienda/arquitectura.html:31
+msgid "Probar desde el navegador"
+msgstr "Probar desde el navegador"
+
+#: tienda/templates/tienda/arquitectura.html:32
+msgid ""
+"Cada botón hace una petición real. El registro muestra qué servicio "
+"respondió."
+msgstr "Cada botón hace una petición real. El registro muestra qué servicio respondió."
+
+#: tienda/templates/tienda/arquitectura.html:37
+msgid "Pedir Top semanal (Django)"
+msgstr "Pedir Top semanal (Django)"
+
+#: tienda/templates/tienda/arquitectura.html:38
+msgid "Enviar notificación (microservicio Flask)"
+msgstr "Enviar notificación (microservicio Flask)"
+
+#: tienda/templates/tienda/arquitectura.html:39
+msgid "Generar reporte de ventas (Celery)"
+msgstr "Generar reporte de ventas (Celery)"
+
+#: tienda/templates/tienda/arquitectura.html:40
+msgid "Hacer una compra (dispara Celery y Flask)"
+msgstr "Hacer una compra (dispara Celery y Flask)"
+
+#: tienda/templates/tienda/arquitectura.html:45
+msgid "Registro de peticiones"
+msgstr "Registro de peticiones"
+
+#: tienda/templates/tienda/arquitectura.html:47
+msgid "Aún no hay peticiones. Pulsa un botón."
+msgstr "Aún no hay peticiones. Pulsa un botón."
+
+#: tienda/templates/tienda/base.html:7
+msgid ""
+"Belleza con calificaciones, reseñas de creadoras y videos de TikTok en cada "
+"producto."
+msgstr "Belleza con calificaciones, reseñas de creadoras y videos de TikTok en cada producto."
+
+#: tienda/templates/tienda/base.html:15
+msgid "Ir al contenido"
+msgstr "Ir al contenido"
+
+#: tienda/templates/tienda/base.html:25 tienda/templates/tienda/base.html:26
+#: tienda/templates/tienda/base.html:47 tienda/templates/tienda/base.html:48
+msgid "Buscar productos"
+msgstr "Buscar productos"
+
+#: tienda/templates/tienda/base.html:27 tienda/templates/tienda/base.html:49
+#: tienda/templates/tienda/base.html:68 tienda/templates/tienda/buscar.html:15
+msgid "Buscar"
+msgstr "Buscar"
+
+#: tienda/templates/tienda/base.html:34
+msgid "Idioma"
+msgstr "Idioma"
+
+#: tienda/templates/tienda/base.html:41
+msgid "Cambiar"
+msgstr "Cambiar"
+
+#: tienda/templates/tienda/base.html:43 tienda/templates/tienda/base.html:69
+#: tienda/templates/tienda/carrito.html:3
+#: tienda/templates/tienda/carrito.html:11
+msgid "Carrito"
+msgstr "Carrito"
+
+#: tienda/templates/tienda/base.html:62
+msgid ""
+"Productos de belleza con la calificación de quienes los usan y el video de "
+"la creadora que los recomienda."
+msgstr "Productos de belleza con la calificación de quienes los usan y el video de la creadora que los recomienda."
+
+#: tienda/templates/tienda/base.html:63
+msgid "Los videos pertenecen a sus autoras y se muestran desde TikTok."
+msgstr "Los videos pertenecen a sus autoras y se muestran desde TikTok."
+
+#: tienda/templates/tienda/base.html:65
+msgid "Pie de página"
+msgstr "Pie de página"
+
+#: tienda/templates/tienda/buscar.html:4 tienda/templates/tienda/buscar.html:12
+msgid "Búsqueda"
+msgstr "Búsqueda"
+
+#: tienda/templates/tienda/buscar.html:19
+#, python-format
+msgid "%(n)s resultado"
+msgid_plural "%(n)s resultados"
+msgstr[0] "%(n)s resultado"
+msgstr[1] "%(n)s resultados"
+
+#: tienda/templates/tienda/buscar.html:22
+#: tienda/templates/tienda/categoria.html:21
+msgid "Ordenar por"
+msgstr "Ordenar por"
+
+#: tienda/templates/tienda/buscar.html:24
+#: tienda/templates/tienda/categoria.html:23
+msgid "Más recomendados"
+msgstr "Más recomendados"
+
+#: tienda/templates/tienda/buscar.html:25
+#: tienda/templates/tienda/categoria.html:24
+msgid "Mejor calificados"
+msgstr "Mejor calificados"
+
+#: tienda/templates/tienda/buscar.html:26
+#: tienda/templates/tienda/categoria.html:25
+msgid "Precio: de menor a mayor"
+msgstr "Precio: de menor a mayor"
+
+#: tienda/templates/tienda/buscar.html:27
+#: tienda/templates/tienda/categoria.html:26
+msgid "Precio: de mayor a menor"
+msgstr "Precio: de mayor a menor"
+
+#: tienda/templates/tienda/buscar.html:35
+msgid "Resultados de la búsqueda"
+msgstr "Resultados de la búsqueda"
+
+#: tienda/templates/tienda/buscar.html:37
+msgid ""
+"Escribe el nombre de un producto, una marca o una categoría en el buscador "
+"de arriba."
+msgstr "Escribe el nombre de un producto, una marca o una categoría en el buscador de arriba."
+
+#: tienda/templates/tienda/buscar.html:45
+#, python-format
+msgid ""
+"No encontramos productos para “%(q)s”. Revisa la ortografía o prueba con una "
+"palabra más corta, o mira el"
+msgstr "No encontramos productos para “%(q)s”. Revisa la ortografía o prueba con una palabra más corta, o mira el"
+
+#: tienda/templates/tienda/buscar.html:45
+msgid "catálogo completo"
+msgstr "catálogo completo"
+
+#: tienda/templates/tienda/carrito.html:14
+msgid "Tu carrito"
+msgstr "Tu carrito"
+
+#: tienda/templates/tienda/carrito.html:25
+msgid "Resumen"
+msgstr "Resumen"
+
+#: tienda/templates/tienda/carrito.html:27
+msgid "Total"
+msgstr "Total"
+
+#: tienda/templates/tienda/carrito.html:31
+msgid "¿Quién hace la compra?"
+msgstr "¿Quién hace la compra?"
+
+#: tienda/templates/tienda/carrito.html:33
+msgid "Elige un perfil"
+msgstr "Elige un perfil"
+
+#: tienda/templates/tienda/carrito.html:39
+msgid "Confirmar compra"
+msgstr "Confirmar compra"
+
+#: tienda/templates/tienda/carrito.html:41
+msgid ""
+"Todavía no hay cuentas de usuario, por eso se elige el perfil. El pago se "
+"registra como aprobado de forma simulada."
+msgstr "Todavía no hay cuentas de usuario, por eso se elige el perfil. El pago se registra como aprobado de forma simulada."
+
+#: tienda/templates/tienda/carrito.html:47
+msgid "Tu carrito está vacío. Agrega productos desde el"
+msgstr "Tu carrito está vacío. Agrega productos desde el"
+
+#: tienda/templates/tienda/carrito.html:47
+msgid "catálogo"
+msgstr "catálogo"
+
+#: tienda/templates/tienda/carrito.html:47
+msgid "o mira el"
+msgstr "o mira el"
+
+#: tienda/templates/tienda/carrito.html:51
+msgid "Tu orden está confirmada."
+msgstr "Tu orden está confirmada."
+
+#: tienda/templates/tienda/carrito.html:52
+msgid "Número de orden:"
+msgstr "Número de orden:"
+
+#: tienda/templates/tienda/carrito.html:53
+msgid "Total:"
+msgstr "Total:"
+
+#: tienda/templates/tienda/carrito.html:54
+msgid "Seguir mirando"
+msgstr "Seguir mirando"
+
+#: tienda/templates/tienda/categoria.html:19
+#: tienda/templates/tienda/home.html:69
+#, python-format
+msgid "%(n)s producto"
+msgid_plural "%(n)s productos"
+msgstr[0] "%(n)s producto"
+msgstr[1] "%(n)s productos"
+
+#: tienda/templates/tienda/categoria.html:32
+#, python-format
+msgid "Productos de %(nombre)s"
+msgstr "Productos de %(nombre)s"
+
+#: tienda/templates/tienda/categoria.html:37
+msgid "Todavía no hay productos en esta categoría."
+msgstr "Todavía no hay productos en esta categoría."
+
+#: tienda/templates/tienda/categoria.html:37
+msgid "Ver todo el catálogo"
+msgstr "Ver todo el catálogo"
+
+#: tienda/templates/tienda/home.html:4
+msgid "belleza probada por otras"
+msgstr "belleza probada por otras"
+
+#: tienda/templates/tienda/home.html:11
+msgid "Belleza probada por otras."
+msgstr "Belleza probada por otras."
+
+#: tienda/templates/tienda/home.html:12
+msgid ""
+"Calificaciones, reseñas de creadoras y los videos de TikTok donde las usan, "
+"juntos en cada producto."
+msgstr "Calificaciones, reseñas de creadoras y los videos de TikTok donde las usan, juntos en cada producto."
+
+#: tienda/templates/tienda/home.html:13
+msgid "Ver el catálogo"
+msgstr "Ver el catálogo"
+
+#: tienda/templates/tienda/home.html:18
+msgid "Producto más recomendado"
+msgstr "Producto más recomendado"
+
+#: tienda/templates/tienda/home.html:23
+msgid "Lo más recomendado por creadoras"
+msgstr "Lo más recomendado por creadoras"
+
+#: tienda/templates/tienda/home.html:34
+msgid "Ver producto"
+msgstr "Ver producto"
+
+#: tienda/templates/tienda/home.html:47
+msgid "Ordenados primero por reseñas de creadoras y luego por calificación."
+msgstr "Ordenados primero por reseñas de creadoras y luego por calificación."
+
+#: tienda/templates/tienda/home.html:51
+msgid "Los 10 productos mejor valorados"
+msgstr "Los 10 productos mejor valorados"
+
+#: tienda/templates/tienda/home.html:60
+msgid "Todavía no hay productos para armar el ranking."
+msgstr "Todavía no hay productos para armar el ranking."
+
+#: tienda/templates/tienda/home.html:68
+msgid "Todo el catálogo"
+msgstr "Todo el catálogo"
+
+#: tienda/templates/tienda/home.html:71
+msgid "Filtrar por categoría"
+msgstr "Filtrar por categoría"
+
+#: tienda/templates/tienda/home.html:72
+msgid "Todo"
+msgstr "Todo"
+
+#: tienda/templates/tienda/home.html:83
+msgid "Todavía no hay productos en el catálogo."
+msgstr "Todavía no hay productos en el catálogo."
+
+#: tienda/templates/tienda/home.html:86
+msgid "No hay productos en esta categoría todavía. Prueba con otra."
+msgstr "No hay productos en esta categoría todavía. Prueba con otra."
+
+#: tienda/templates/tienda/home.html:93
+msgid "Descubre también"
+msgstr "Descubre también"
+
+#: tienda/templates/tienda/home.html:94
+msgid "Recomendaciones de nuestro equipo aliado."
+msgstr "Recomendaciones de nuestro equipo aliado."
+
+#: tienda/templates/tienda/home.html:110
+msgid "Lema"
+msgstr "Lema"
+
+#: tienda/templates/tienda/home.html:111
+msgid "Tu piel, tu historia, tu brillo."
+msgstr "Tu piel, tu historia, tu brillo."
+
+#: tienda/templates/tienda/producto.html:32
+#, python-format
+msgid "%(r)s de 5 (%(n)s reseña)"
+msgid_plural "%(r)s de 5 (%(n)s reseñas)"
+msgstr[0] "%(r)s de 5 (%(n)s reseña)"
+msgstr[1] "%(r)s de 5 (%(n)s reseñas)"
+
+#: tienda/templates/tienda/producto.html:38
+msgid "Conversión con tasa de cambio de una API externa"
+msgstr "Conversión con tasa de cambio de una API externa"
+
+#: tienda/templates/tienda/producto.html:40
+msgid "Agotado por ahora."
+msgstr "Agotado por ahora."
+
+#: tienda/templates/tienda/producto.html:41
+#, python-format
+msgid "Quedan %(n)s unidades."
+msgstr "Quedan %(n)s unidades."
+
+#: tienda/templates/tienda/producto.html:42
+msgid "Disponible."
+msgstr "Disponible."
+
+#: tienda/templates/tienda/producto.html:52
+#: tienda/templates/tienda/producto.html:54
+msgid "Agregar al carrito"
+msgstr "Agregar al carrito"
+
+#: tienda/templates/tienda/producto.html:55
+msgid "Ver carrito"
+msgstr "Ver carrito"
+
+#: tienda/templates/tienda/producto.html:61
+msgid "creadora"
+msgstr "creadora"
+
+#: tienda/templates/tienda/producto.html:75
+#, python-format
+msgid "Video de TikTok sobre %(nombre)s"
+msgstr "Video de TikTok sobre %(nombre)s"
+
+#: tienda/templates/tienda/producto.html:79
+msgid "El video de este producto está en TikTok."
+msgstr "El video de este producto está en TikTok."
+
+#: tienda/templates/tienda/producto.html:81
+msgid "Ver en TikTok"
+msgstr "Ver en TikTok"
+
+#: tienda/templates/tienda/producto.html:86
+msgid "Video de"
+msgstr "Video de"
+
+#: tienda/templates/tienda/producto.html:86
+msgid "su autora"
+msgstr "su autora"
+
+#: tienda/templates/tienda/producto.html:86
+msgid "en TikTok."
+msgstr "en TikTok."
+
+#: tienda/templates/tienda/producto.html:87
+msgid "Abrir en TikTok"
+msgstr "Abrir en TikTok"
+
+#: tienda/templates/tienda/producto.html:94
+msgid "Reseñas"
+msgstr "Reseñas"
+
+#: tienda/templates/tienda/producto.html:101
+#, python-format
+msgid "%(n)s reseña"
+msgid_plural "%(n)s reseñas"
+msgstr[0] "%(n)s reseña"
+msgstr[1] "%(n)s reseñas"
+
+#: tienda/templates/tienda/producto.html:103
+msgid "Cantidad de reseñas por calificación"
+msgstr "Cantidad de reseñas por calificación"
+
+#: tienda/templates/tienda/producto.html:105
+#, python-format
+msgid "%(n)s estrella"
+msgid_plural "%(n)s estrellas"
+msgstr[0] "%(n)s estrella"
+msgstr[1] "%(n)s estrellas"
+
+#: tienda/templates/tienda/producto.html:120
+#, python-format
+msgid "Piel %(t)s."
+msgstr "Piel %(t)s."
+
+#: tienda/templates/tienda/producto.html:128
+msgid ""
+"Este producto aún no tiene reseñas. Cuando alguien lo califique, aparecerá "
+"aquí."
+msgstr "Este producto aún no tiene reseñas. Cuando alguien lo califique, aparecerá aquí."
+
+#: tienda/templates/tienda/producto.html:137
+#, python-format
+msgid "Más de %(nombre)s"
+msgstr "Más de %(nombre)s"
