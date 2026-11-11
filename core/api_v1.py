@@ -1,5 +1,6 @@
 from django.db import connection
 from django.http import JsonResponse
+from django.utils.translation import gettext as _
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from core.infra.tasa_cambio import crear_conversor
@@ -17,7 +18,7 @@ class TopSemanaView(APIView):
         try:
             limite = max(1, min(int(request.query_params.get("limit", 10)), 50))
         except ValueError:
-            return Response({"error": "El parámetro limit debe ser un número entero."}, status=400)
+            return Response({"error": _("El parámetro limit debe ser un número entero.")}, status=400)
 
         productos = list(
             productos_con_ranking(Producto.objects.select_related("marca", "categoria"))[:limite]
@@ -49,10 +50,10 @@ class TasaCambioView(APIView):
         try:
             monto = float(request.query_params.get("monto", 1))
         except ValueError:
-            return Response({"error": "El parámetro monto debe ser numérico."}, status=400)
+            return Response({"error": _("El parámetro monto debe ser numérico.")}, status=400)
         convertido = crear_conversor().convertir(monto, "COP", "USD")
         if convertido is None:
-            return Response({"error": "Servicio de tasas no disponible."}, status=503)
+            return Response({"error": _("Servicio de tasas no disponible.")}, status=503)
         return Response({"monto_cop": monto, "monto_usd": float(convertido)})
 
 def salud(request):

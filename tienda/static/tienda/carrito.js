@@ -5,6 +5,11 @@
 (function () {
   "use strict";
 
+  // Traducciones: gettext/ngettext/interpolate vienen de /jsi18n/ (catálogo djangojs).
+  var _ = window.gettext || function (s) { return s; };
+  var _n = window.ngettext || function (s, p, n) { return n === 1 ? s : p; };
+  var _f = window.interpolate || function (f, o) { return f.replace(/%\((\w+)\)s/g, function (m, k) { return o[k]; }); };
+
   var CLAVE = "glowhive_carrito";
   var memoria = [];
 
@@ -71,9 +76,9 @@
       var dentro = estaEnCarrito(boton.getAttribute("data-id"));
       var nombre = boton.getAttribute("data-nombre") || "";
       boton.setAttribute("aria-pressed", dentro ? "true" : "false");
-      boton.setAttribute("aria-label", (dentro ? "Quitar " : "Agregar ") + nombre + (dentro ? " del carrito" : " al carrito"));
-      boton.textContent = dentro ? "En el carrito" : (boton.getAttribute("data-texto") || "Agregar");
-      boton.title = dentro ? "Quitar del carrito" : "";
+      boton.setAttribute("aria-label", _f(dentro ? _("Quitar %(nombre)s del carrito") : _("Agregar %(nombre)s al carrito"), { nombre: nombre }, true));
+      boton.textContent = dentro ? _("En el carrito") : (boton.getAttribute("data-texto") || _("Agregar"));
+      boton.title = dentro ? _("Quitar del carrito") : "";
     });
 
     pintarCarrito();
@@ -105,9 +110,9 @@
     if (item.url) nombre.href = item.url;
     info.appendChild(nombre);
     info.appendChild(el("p", "linea-precio", cop(item.precio)));
-    var quitarBtn = el("button", "btn-quitar", "Quitar");
+    var quitarBtn = el("button", "btn-quitar", _("Quitar"));
     quitarBtn.type = "button";
-    quitarBtn.setAttribute("aria-label", "Quitar " + item.nombre + " del carrito");
+    quitarBtn.setAttribute("aria-label", _f(_("Quitar %(nombre)s del carrito"), { nombre: item.nombre }, true));
     quitarBtn.addEventListener("click", function () { quitar(item.id); });
     info.appendChild(quitarBtn);
 
@@ -133,7 +138,7 @@
     var total = items.reduce(function (suma, p) { return suma + (Number(p.precio) || 0); }, 0);
     document.getElementById("carrito-total").textContent = cop(total);
     document.getElementById("carrito-cantidad").textContent =
-      items.length === 1 ? "1 producto" : items.length + " productos";
+      _f(_n("%(n)s producto", "%(n)s productos", items.length), { n: items.length }, true);
 
     contenido.hidden = items.length === 0;
     vacio.hidden = items.length !== 0;
@@ -147,14 +152,14 @@
   }
 
   function textoDeError(datos) {
-    if (!datos) return "No pudimos crear la orden. Intenta de nuevo en unos minutos.";
+    if (!datos) return _("No pudimos crear la orden. Intenta de nuevo en unos minutos.");
     if (typeof datos.detail === "string") return datos.detail;
     var partes = [];
     Object.keys(datos).forEach(function (campo) {
       var valor = datos[campo];
       partes.push(Array.isArray(valor) ? valor.join(" ") : String(valor));
     });
-    return partes.join(" ") || "No pudimos crear la orden. Intenta de nuevo en unos minutos.";
+    return partes.join(" ") || _("No pudimos crear la orden. Intenta de nuevo en unos minutos.");
   }
 
   function confirmarCompra(evento) {
@@ -164,7 +169,7 @@
     var boton = document.getElementById("btn-confirmar");
 
     if (!usuario.value) {
-      mostrarMensaje("Elige quién hace la compra para continuar.", true);
+      mostrarMensaje(_("Elige quién hace la compra para continuar."), true);
       usuario.focus();
       return;
     }
@@ -172,7 +177,7 @@
 
     mostrarMensaje("", false);
     boton.disabled = true;
-    boton.textContent = "Creando tu orden…";
+    boton.textContent = _("Creando tu orden…");
 
     fetch("/api/ordenes/crear/", {
       method: "POST",
@@ -202,11 +207,11 @@
         document.getElementById("confirmacion-titulo").focus();
       })
       .catch(function () {
-        mostrarMensaje("No pudimos conectar con la tienda. Revisa tu conexión e intenta de nuevo.", true);
+        mostrarMensaje(_("No pudimos conectar con la tienda. Revisa tu conexión e intenta de nuevo."), true);
       })
       .then(function () {
         boton.disabled = false;
-        boton.textContent = "Confirmar compra";
+        boton.textContent = _("Confirmar compra");
       });
   }
 

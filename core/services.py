@@ -1,3 +1,5 @@
+from django.utils.translation import gettext as _
+
 from tienda.models import Categoria, DireccionEnvio, Producto, Resena, Usuario
 from core.domain.orden_builder import OrdenBuilder
 from core.domain.reglas_negocio import calcular_total_orden, calcular_comision_marca
@@ -48,14 +50,16 @@ class OrdenService:
         try:
             return Usuario.objects.get(id=usuario_id)
         except Usuario.DoesNotExist:
-            raise UsuarioNoEncontradoError(f"Usuario {usuario_id} no existe.")
+            raise UsuarioNoEncontradoError(_("Usuario %(id)s no existe.") % {"id": usuario_id})
 
     def _obtener_productos(self, productos_ids: list[int]):
         productos = list(Producto.objects.filter(id__in=productos_ids))
         encontrados_ids = {p.id for p in productos}
         faltantes = set(productos_ids) - encontrados_ids
         if faltantes:
-            raise ProductoNoEncontradoError(f"Productos no encontrados: {sorted(faltantes)}")
+            raise ProductoNoEncontradoError(
+                _("Productos no encontrados: %(ids)s") % {"ids": sorted(faltantes)}
+            )
         return productos
 
 

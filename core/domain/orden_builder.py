@@ -1,6 +1,7 @@
 from tienda.models import Orden
 from core.domain.reglas_negocio import validar_stock
 from core.domain.excepciones import OrdenBuilderError, StockInsuficienteError
+from django.utils.translation import gettext as _
 
 
 class OrdenBuilder:
@@ -22,13 +23,13 @@ class OrdenBuilder:
 
     def _validar(self):
         if self._usuario is None:
-            raise OrdenBuilderError("La orden requiere un usuario.")
+            raise OrdenBuilderError(_("La orden requiere un usuario."))
         if not self._productos:
-            raise OrdenBuilderError("La orden requiere al menos un producto.")
+            raise OrdenBuilderError(_("La orden requiere al menos un producto."))
         for producto in self._productos:
             if not validar_stock(producto):
                 raise StockInsuficienteError(
-                    f"Sin stock suficiente para '{producto.nombre}'."
+                    _("Sin stock suficiente para '%(nombre)s'.") % {"nombre": producto.nombre}
                 )
 
     def build(self) -> Orden:

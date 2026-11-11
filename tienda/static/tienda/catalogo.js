@@ -3,6 +3,10 @@
 (function () {
   "use strict";
 
+  // Traducciones: gettext/ngettext/interpolate vienen de /jsi18n/ (catálogo djangojs).
+  var _n = window.ngettext || function (s, p, n) { return n === 1 ? s : p; };
+  var _f = window.interpolate || function (f, o) { return f.replace(/%\((\w+)\)s/g, function (m, k) { return o[k]; }); };
+
   var rejilla = document.querySelector("[data-rejilla]");
   if (!rejilla) return;
 
@@ -25,7 +29,7 @@
       t.hidden = !coincide;
       if (coincide) visibles += 1;
     });
-    if (conteo) conteo.textContent = visibles === 1 ? "1 producto" : visibles + " productos";
+    if (conteo) conteo.textContent = _f(_n("%(n)s producto", "%(n)s productos", visibles), { n: visibles }, true);
     if (aviso) aviso.hidden = visibles !== 0;
   }
 

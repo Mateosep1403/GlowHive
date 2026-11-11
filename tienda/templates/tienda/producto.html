@@ -1,5 +1,5 @@
 {% extends "tienda/base.html" %}
-{% load tienda_extras %}
+{% load i18n tienda_extras %}
 {% block titulo %}{{ producto.nombre }} — GlowHive{% endblock %}
 
 {% block content %}
@@ -28,7 +28,7 @@
     {% if producto.rating_promedio %}
       <div class="calificacion">
         {% include "tienda/_estrellas.html" with valor=producto.rating_promedio grandes=True %}
-        <a class="enlace" href="#resenas">{{ producto.rating_promedio|floatformat:1 }} de 5 ({{ producto.total_resenas }} reseña{{ producto.total_resenas|pluralize }})</a>
+        <a class="enlace" href="#resenas">{% blocktrans with r=producto.rating_promedio|floatformat:1 count n=producto.total_resenas %}{{ r }} de 5 ({{ n }} reseña){% plural %}{{ r }} de 5 ({{ n }} reseñas){% endblocktrans %}</a>
       </div>
     {% else %}
       <p class="calificacion">{% trans "Sin reseñas todavía" %}</p>
@@ -50,14 +50,14 @@
               data-url="{% url 'producto_detalle' producto.id %}"
               data-texto="{% trans 'Agregar al carrito' %}"
               aria-pressed="false"
-              {% if producto.stock <= 0 %}disabled{% endif %}>{% if producto.stock <= 0 %}Agotado{% else %}Agregar al carrito{% endif %}</button>
-      <a class="btn" href="{% url 'carrito' %}">Ver carrito</a>
+              {% if producto.stock <= 0 %}disabled{% endif %}>{% if producto.stock <= 0 %}{% trans "Agotado" %}{% else %}{% trans "Agregar al carrito" %}{% endif %}</button>
+      <a class="btn" href="{% url 'carrito' %}">{% trans "Ver carrito" %}</a>
     </div>
 
     {% if mejor_resena %}
     <blockquote class="cita-destacada">
       “{{ mejor_resena.comentario }}”
-      <cite>{{ mejor_resena.usuario.nombre }}{% if mejor_resena.es_creadora %}, creadora{% endif %}</cite>
+      <cite>{{ mejor_resena.usuario.nombre }}{% if mejor_resena.es_creadora %}, {% trans "creadora" %}{% endif %}</cite>
     </blockquote>
     {% endif %}
   </div>
@@ -71,37 +71,37 @@
       {% with video=producto.video_url|tiktok_id autora=producto.video_url|tiktok_usuario %}
         {% if video %}
           <iframe src="https://www.tiktok.com/embed/v2/{{ video }}"
-                  title="Video de TikTok sobre {{ producto.nombre }}"
+                  title="{% blocktrans with nombre=producto.nombre %}Video de TikTok sobre {{ nombre }}{% endblocktrans %}"
                   allow="encrypted-media; fullscreen" allowfullscreen loading="lazy"></iframe>
         {% else %}
           <div class="video-aviso">
-            <p>El video de este producto está en TikTok.</p>
+            <p>{% trans "El video de este producto está en TikTok." %}</p>
             {% if producto.video_url|slice:":8" == "https://" %}
-            <a class="btn" href="{{ producto.video_url }}" target="_blank" rel="noopener noreferrer">Ver en TikTok</a>
+            <a class="btn" href="{{ producto.video_url }}" target="_blank" rel="noopener noreferrer">{% trans "Ver en TikTok" %}</a>
             {% endif %}
           </div>
         {% endif %}
         <p class="video-credito">
-          Video de {% if autora %}{{ autora }}{% else %}su autora{% endif %} en TikTok.
-          {% if producto.video_url|slice:":8" == "https://" %}<a class="enlace" href="{{ producto.video_url }}" target="_blank" rel="noopener noreferrer">Abrir en TikTok</a>{% endif %}
+          {% trans "Video de" %} {% if autora %}{{ autora }}{% else %}{% trans "su autora" %}{% endif %} {% trans "en TikTok." %}
+          {% if producto.video_url|slice:":8" == "https://" %}<a class="enlace" href="{{ producto.video_url }}" target="_blank" rel="noopener noreferrer">{% trans "Abrir en TikTok" %}</a>{% endif %}
         </p>
       {% endwith %}
     </div>
     {% endif %}
 
     <div>
-      <h2 class="titulo-seccion" id="titulo-resenas">Reseñas</h2>
+      <h2 class="titulo-seccion" id="titulo-resenas">{% trans "Reseñas" %}</h2>
 
       {% if resenas %}
       <div class="resumen-resenas">
         <div>
           <p class="promedio-grande">{{ producto.rating_promedio|floatformat:1 }}</p>
           {% include "tienda/_estrellas.html" with valor=producto.rating_promedio grandes=True %}
-          <p class="resena-meta">{{ producto.total_resenas }} reseña{{ producto.total_resenas|pluralize }}</p>
+          <p class="resena-meta">{% blocktrans count n=producto.total_resenas %}{{ n }} reseña{% plural %}{{ n }} reseñas{% endblocktrans %}</p>
         </div>
-        <div class="distribucion" aria-label="Cantidad de reseñas por calificación">
+        <div class="distribucion" aria-label="{% trans 'Cantidad de reseñas por calificación' %}">
           {% for fila in distribucion %}
-            <span>{{ fila.estrellas }} estrella{{ fila.estrellas|pluralize }}</span>
+            <span>{% blocktrans count n=fila.estrellas %}{{ n }} estrella{% plural %}{{ n }} estrellas{% endblocktrans %}</span>
             <span class="barra"><i style="--w: {{ fila.pct }}%"></i></span>
             <span>{{ fila.total }}</span>
           {% endfor %}
@@ -113,10 +113,10 @@
         <li class="resena">
           <div class="resena-cabecera">
             <span class="resena-autor">{{ resena.usuario.nombre }}</span>
-            {% if resena.es_creadora %}<span class="etiqueta-creadora">Creadora</span>{% endif %}
+            {% if resena.es_creadora %}<span class="etiqueta-creadora">{% trans "Creadora" %}</span>{% endif %}
             {% include "tienda/_estrellas.html" with valor=resena.calificacion %}
             <span class="resena-meta">
-              {% if resena.usuario.tipoPiel %}Piel {{ resena.usuario.tipoPiel|lower }}. {% endif %}{{ resena.fecha|date:"d/m/Y" }}
+              {% if resena.usuario.tipoPiel %}{% blocktrans with t=resena.usuario.tipoPiel|lower %}Piel {{ t }}.{% endblocktrans %} {% endif %}{{ resena.fecha|date:"SHORT_DATE_FORMAT" }}
             </span>
           </div>
           {% if resena.comentario %}<p>{{ resena.comentario }}</p>{% endif %}
@@ -124,7 +124,7 @@
         {% endfor %}
       </ul>
       {% else %}
-        <p class="vacio">Este producto aún no tiene reseñas. Cuando alguien lo califique, aparecerá aquí.</p>
+        <p class="vacio">{% trans "Este producto aún no tiene reseñas. Cuando alguien lo califique, aparecerá aquí." %}</p>
       {% endif %}
     </div>
   </div>
@@ -133,7 +133,7 @@
 {% if relacionados %}
 <section class="seccion" aria-labelledby="titulo-relacionados">
   <div class="seccion-cabecera">
-    <h2 id="titulo-relacionados">Más de {{ producto.categoria.nombre }}</h2>
+    <h2 id="titulo-relacionados">{% blocktrans with nombre=producto.categoria.nombre %}Más de {{ nombre }}{% endblocktrans %}</h2>
   </div>
   <div class="rejilla">
     {% for producto in relacionados %}
